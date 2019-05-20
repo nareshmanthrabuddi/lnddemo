@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c352e15a-4be3-4660-9d96-095bce256491" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="lnddevopsFlow" doc:id="570a215e-7018-413c-b0d8-9ec75d2375bb" >
+		<http:listener doc:name="Listener" doc:id="640cbc52-9cdb-4afc-9b68-9177cdb8b02d" config-ref="HTTP_Listener_config" path="/getData"/>
+		<set-payload value='#["CI/CD Demo"]' doc:name="Set Payload" doc:id="5ac29869-1aed-479e-8578-5c107133f0aa" />
+		<logger level="INFO" doc:name="Logger" doc:id="0162d5a1-f50c-44a4-aa74-4f515b96f398" message="#[payload]"/>
+	</flow>
+</mule>
